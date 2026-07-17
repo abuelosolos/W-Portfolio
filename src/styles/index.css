@@ -371,7 +371,6 @@ body.menu-open {
   font-size: clamp(1.1rem, 2vw, 1.45rem);
   font-weight: 600;
   letter-spacing: -0.02em;
-  text-transform: uppercase;
 }
 
 .section-rule {
@@ -496,6 +495,58 @@ body.menu-open {
   margin-right: 8px;
 }
 
+@media (max-width: 768px) {
+  .experience-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .experience-tabs {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0;
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .experience-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .experience-tab {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 16px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+  }
+
+  .experience-tab.active {
+    border-bottom: 2px solid var(--accent);
+    border-left: none;
+    color: var(--accent);
+  }
+
+  .experience-panel {
+    width: 100%;
+  }
+
+  .experience-role {
+    font-size: 1rem;
+  }
+
+  .experience-panel li {
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+}
+
 .proj-slider {
   position: relative;
   width: 100%;
@@ -530,6 +581,45 @@ body.menu-open {
 
 @media (max-width: 860px) {
   .proj-slide img { height: 420px; }
+}
+
+@media (max-width: 768px) {
+  .proj-slide-info {
+    padding: 20px 18px;
+    max-width: 100%;
+  }
+
+  .proj-slide-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .proj-slide-title {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .proj-slide-desc {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  .proj-slide-cta {
+    font-size: 0.68rem;
+    margin-top: 10px;
+  }
+
+  .proj-slider-dots {
+    bottom: 12px;
+    right: 18px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -931,5 +1021,45 @@ body.menu-open {
 @media (max-width: 1024px) {
   .about-grid {
     gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .about-copy {
+    width: 100%;
+  }
+
+  .about-copy p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+  .tag-list {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+  }
+
+  .tag-item {
+    font-size: 0.8rem;
+  }
+
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer-links {
+    display: none;
   }
 }

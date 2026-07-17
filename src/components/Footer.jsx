@@ -6,12 +6,6 @@ export function Footer() {
           <div className="foot-brand">Kumasi<span>.</span></div>
           <p className="foot-tag">Designed by Kumasi.</p>
         </div>
-        <nav className="footer-links" aria-label="Footer navigation">
-          <a href="#hero">Home</a>
-          <a href="#about">About</a>
-          <a href="#work">Projects</a>
-          <a href="#connect">Connect</a>
-        </nav>
       </div>
       <div className="container footer-bottom">
         <span className="foot-copy">2026 Kumasi. All rights reserved.</span>
