@@ -84,7 +84,7 @@ export function Projects() {
                   <div className="proj-slide-label">{slide.label}</div>
                   <h3 className="proj-slide-title">{slide.title}</h3>
                   <p className="proj-slide-desc">{slide.desc}</p>
-                  <a href={slide.link} className="proj-slide-cta">View project →</a>
+                  <a href={slide.link} className="proj-slide-cta">View project</a>
                 </div>
               </div>
             ))}
@@ -151,7 +151,7 @@ export function Projects() {
                     rel="noopener"
                     className="proj-mobile-cta"
                   >
-                    View project →
+                    View project
                   </a>
                 </div>
               )}

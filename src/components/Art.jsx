@@ -26,7 +26,7 @@ export function Art() {
           <span className="section-rule"></span>
         </div>
 
-        <a className="art-link" href="https://www.pinterest.com/HeisAbuelo/art/" target="_blank" rel="noopener">Explore collection →</a>
+        <a className="art-link" href="https://www.pinterest.com/HeisAbuelo/art/" target="_blank" rel="noopener">Explore collection</a>
         <p className="art-description">A collection of original characters and conceptual illustrations. Full gallery on Pinterest.</p>
 
         <div className="art-grid">
