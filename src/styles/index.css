@@ -1193,6 +1193,7 @@ a.pill-live:focus-visible {
 
   /* hero (carousel is not rendered on mobile; floating icons sit below the text) */
   .hero {
+    position: relative;
     padding-bottom: 32px;
   }
 
@@ -1202,7 +1203,16 @@ a.pill-live:focus-visible {
     gap: 0;
     min-height: 0;
     padding-top: 32px;
-    padding-bottom: 0;
+    padding-bottom: 18px; /* stands in for the hint's old height, so the content stays exactly where it was */
+  }
+
+  /* the scroll hint sits near the bottom of the hero (out of the flow) */
+  .hero-scroll {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    width: auto;
   }
 
   .hero-title {
