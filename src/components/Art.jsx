@@ -1,18 +1,15 @@
 import { useReveal } from '../hooks/useReveal';
-import jersey1 from '../assets/images/Jersey1.webp';
-import jersey2 from '../assets/images/Jersey2.webp';
-import jersey3 from '../assets/images/Jersey3.webp';
-import wizzo from '../assets/images/Wizzo.webp';
-import artCover from '../assets/images/ArtCover.webp';
-import artCover1 from '../assets/images/ArtCover1.webp';
+import { Img } from './Img';
+import { CaseStudyBtn } from './CaseStudyBtn';
+import { artSasha, artLulu, artAbuelo, artMorse } from '../assets/images';
+import { pinterestUrl } from '../data/socials';
 
+// Mosaic order matches the Figma "Album Grid": tall, tall, wide, wide.
 const artImages = [
-  { src: jersey1, alt: 'Jersey 1' },
-  { src: wizzo, alt: 'Wizzo' },
-  { src: jersey2, alt: 'Jersey 2' },
-  { src: artCover, alt: 'Art Cover' },
-  { src: jersey3, alt: 'Jersey 3' },
-  { src: artCover1, alt: 'Art Cover 1' },
+  { src: artSasha, alt: 'Sasha', position: '50% 8%' },
+  { src: artLulu, alt: 'Lulu' },
+  { src: artAbuelo, alt: 'Abuelo' },
+  { src: artMorse, alt: 'Morse', position: '50% 35%' },
 ];
 
 export function Art() {
@@ -20,21 +17,24 @@ export function Art() {
 
   return (
     <section className="section" id="art" ref={ref}>
-      <div className={`container reveal ${visible ? 'visible' : ''}`}>
-        <div className="section-heading">
-          <span className="section-label">/ art</span>
-          <span className="section-rule"></span>
+      <div className="container">
+        <div className={`reveal ${visible ? 'visible' : ''}`}>
+          <div className="title-body">
+            <h2 className="section-title">/collection.</h2>
+            <p className="section-sub">A collection of original characters and illustrations. Full gallery on Pinterest.</p>
+          </div>
         </div>
 
-        <a className="art-link" href="https://www.pinterest.com/HeisAbuelo/art/" target="_blank" rel="noopener">Explore collection</a>
-        <p className="art-description">A collection of original characters and conceptual illustrations. Full gallery on Pinterest.</p>
-
-        <div className="art-grid">
+        <div className="album-grid">
           {artImages.map((img, i) => (
-            <div key={i} className="art-item">
-              <img src={img.src} alt={img.alt} loading="lazy" />
+            <div key={img.alt} className={`album-item reveal-item ${visible ? 'visible' : ''}`} style={{ transitionDelay: `${150 + i * 110}ms` }}>
+              <Img src={img.src} alt={img.alt} loading="lazy" style={img.position ? { objectPosition: img.position } : undefined} />
             </div>
           ))}
+        </div>
+
+        <div className={`album-cta reveal ${visible ? 'visible' : ''}`}>
+          <CaseStudyBtn href={pinterestUrl}>Explore Collection</CaseStudyBtn>
         </div>
       </div>
     </section>

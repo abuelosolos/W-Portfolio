@@ -3,3 +3,7 @@ dist/
 .vercel/
 .env
 .env.local
+
+# Figma reference cache + project notes (local only; kept on disk, not committed)
+docs/
+CLAUDE.md
