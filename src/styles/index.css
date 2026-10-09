@@ -989,18 +989,53 @@ a.pill-live:focus-visible {
   object-position: top;
 }
 
+/* soft low-opacity shadows on the left and right edges so the arrows read on any image */
+.case-carousel.has-nav::before,
+.case-carousel.has-nav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: clamp(72px, 12%, 140px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.case-carousel.has-nav::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent);
+}
+
+.case-carousel.has-nav::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.35), transparent);
+}
+
+.case-carousel.has-nav:hover::before,
+.case-carousel.has-nav:hover::after,
+.case-carousel.has-nav:focus-within::before,
+.case-carousel.has-nav:focus-within::after {
+  opacity: 1;
+}
+
 .case-carousel-btn {
+  z-index: 2;
   position: absolute;
   top: 50%;
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  background: rgba(17, 17, 17, 0.6);
   transform: translateY(-50%);
   opacity: 0;
-  transition: opacity 0.3s ease, background-color 0.2s ease;
+  transition: opacity 0.3s ease;
+}
+
+/* no fill behind the arrows; a soft shadow keeps them readable on any image */
+.case-carousel-btn .icon {
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.65));
 }
 
 .case-carousel-btn.prev { left: 16px; }
@@ -1015,10 +1050,6 @@ a.pill-live:focus-visible {
 .case-carousel-btn:hover .icon,
 .case-carousel-btn:focus-visible .icon {
   color: var(--surface-alt);
-}
-
-.case-carousel-btn:hover {
-  background: rgba(17, 17, 17, 0.85);
 }
 
 .case-tags {
@@ -1134,7 +1165,9 @@ a.pill-live:focus-visible {
    Responsive (existing breakpoints: 1024 / 768 / 640 / 480)
    ========================================================================== */
 @media (hover: none) {
-  .case-carousel-btn {
+  .case-carousel-btn,
+  .case-carousel.has-nav::before,
+  .case-carousel.has-nav::after {
     opacity: 1;
   }
 }
@@ -1465,6 +1498,16 @@ a.pill-live:focus-visible {
 
   .case-carousel-btn.prev { left: 8px; }
   .case-carousel-btn.next { right: 8px; }
+
+  /* mobile: Text Primary arrows, no edge shadows */
+  .case-carousel-btn .icon {
+    color: var(--text-primary);
+  }
+
+  .case-carousel.has-nav::before,
+  .case-carousel.has-nav::after {
+    display: none;
+  }
 
   .case-tags {
     gap: 8px;

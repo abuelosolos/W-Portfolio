@@ -14,7 +14,7 @@ function Carousel({ images, title }) {
 
   return (
     <div
-      className="case-carousel"
+      className={`case-carousel ${total > 1 ? 'has-nav' : ''}`}
       tabIndex={total > 1 ? 0 : undefined}
       onKeyDown={(e) => {
         if (e.key === 'ArrowLeft') go(index - 1);
