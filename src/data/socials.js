@@ -3,7 +3,7 @@
 export const socials = [
   { name: 'telegram', label: 'Telegram', href: 'https://t.me/abuelosolos' },
   { name: 'instagram', label: 'Instagram', href: 'https://instagram.com/abuelosolos' }, // TODO: replace with real Instagram URL
-  { name: 'x', label: 'X', href: 'https://x.com/abuelosolos' },
+  { name: 'x', label: 'X', href: 'https://x.com/dev.abuelo' },
   { name: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/heisabuelo' },
 ];
 
