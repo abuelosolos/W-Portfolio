@@ -88,7 +88,7 @@ export const projects = [
     gallery: [img.carrywiseOverview, img.carrywiseOrders, img.carrywiseOrderDetail],
     tags: ['Dashboard', 'Admin', 'Logistics', 'React', 'UI/UX', 'Figma'],
     shortDescription:
-      'The admin side of CarryWise, a logistics aggregation platform for Port Harcourt. Live dispatch, fleet management, orders, revenue and carrier performance in one dark dashboard.',
+      'The admin side of a logistics aggregation platform. Live dispatch, fleet management, orders, revenue and carrier performance in one dark dashboard.',
     challenge:
       "Moving goods around Port Harcourt runs on phone calls, WhatsApp groups and whoever the dispatcher happens to know. Orders, riders and payments live in different places, so problems get noticed late, usually when a customer calls to complain.\n\nCarryWise brings those carriers onto one platform, which means someone has to see all of it at once. The admin dashboard had to give a dispatcher the full picture and let them act on it in a few clicks, not a few minutes.",
     solution:
