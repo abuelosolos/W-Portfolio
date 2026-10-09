@@ -80,39 +80,39 @@ export const projects = [
     status: 'Case study live on Behance', // TODO: confirm wording
   },
   {
-    slug: 'roomly',
-    title: 'Roomly Dashboard',
-    subtitle: 'Hotel Admin Dashboard',
-    thumbnail: img.overviewMac,
-    heroImage: img.overviewMac,
-    gallery: [img.overviewMac, img.revenueMac, img.roomManagementMac, img.reviewMac],
-    tags: ['Figma', 'Dashboard', 'Freelance', 'UI/UX', 'Design System'],
+    slug: 'carrywise',
+    title: 'CarryWise Dashboard',
+    subtitle: 'Shuttle App Admin Dashboard', // TODO: consider "Logistics Admin Dashboard" to match what CarryWise is now
+    thumbnail: img.carrywiseOverview,
+    heroImage: img.carrywiseOverview,
+    gallery: [img.carrywiseOverview, img.carrywiseOrders, img.carrywiseOrderDetail],
+    tags: ['Dashboard', 'Admin', 'Logistics', 'React', 'UI/UX', 'Figma'],
     shortDescription:
-      'Full hotel management: revenue analytics, room tracking, staff scheduling, and guest management.',
+      'The admin side of CarryWise, a logistics aggregation platform for Port Harcourt. Live dispatch, fleet management, orders, revenue and carrier performance in one dark dashboard.',
     challenge:
-      "Running a hotel means a lot of small things happening at once. A room needs cleaning, a guest is asking for something, a booking just changed. In a lot of hotels that information is spread across a notebook, a spreadsheet and a WhatsApp group, so the front desk spends the day chasing it.\n\nThe brief was one dashboard that holds all of it. The risk with that kind of brief is a screen so full that managers stop reading it.", // TODO: verify
+      "Moving goods around Port Harcourt runs on phone calls, WhatsApp groups and whoever the dispatcher happens to know. Orders, riders and payments live in different places, so problems get noticed late, usually when a customer calls to complain.\n\nCarryWise brings those carriers onto one platform, which means someone has to see all of it at once. The admin dashboard had to give a dispatcher the full picture and let them act on it in a few clicks, not a few minutes.",
     solution:
-      "I started with an overview that answers the questions a manager asks first thing in the morning: how full are we, how is revenue, what needs attention. From there each area, rooms, revenue, reviews, guests, gets its own page built from the same table, filter and status patterns, so once you learn one you know them all.\n\nStatus colours are used only for status, which keeps dense tables readable. I also delivered the components and tokens as a proper UI system, so new pages can be built by the dev team without coming back to me for every screen.", // TODO: verify
+      "I designed it dark, with a deep navy and purple palette and one accent colour, so the data is the loudest thing on screen. Colour is kept for status and alerts, which means anything late or broken stands out straight away.\n\nThe dashboard is split into the jobs an admin actually does: Analytics, Orders, Revenue, a Dispatch Map, Fleet Management, Carrier Performance and Settings. Each page uses the same cards, tables and filters. I wrote the design system as a developer guide, so the build is done against specs instead of guesses.",
     keyFeatures: [
-      { title: 'Revenue Analytics', description: 'Charts and summaries of performance by day, month and room type.' }, // TODO: verify
-      { title: 'Room Management', description: 'Live room status, occupancy and housekeeping in one view.' }, // TODO: verify
-      { title: 'Guest Management', description: 'Guest profiles, stays and requests together so nothing gets lost between shifts.' }, // TODO: verify
-      { title: 'Staff Scheduling', description: 'Shift planning that shows coverage per department at a glance.' }, // TODO: verify
-      { title: 'Reviews', description: 'Guest feedback collected in one place for quick follow-up.' }, // TODO: verify
-      { title: 'Reusable UI System', description: 'Components and tokens handed over so developers can extend the dashboard on their own.' }, // TODO: verify
+      { title: 'Dispatch Map', description: 'See active deliveries and carriers on a live map and reassign without leaving the screen.' },
+      { title: 'Orders', description: 'One filterable table for every order, with status, carrier and quick actions.' },
+      { title: 'Fleet Management', description: 'Vehicles and riders with availability, so dispatchers know who can take the next job.' },
+      { title: 'Carrier Performance', description: 'Delivery times and completion rates per carrier, so the good ones get more work.' },
+      { title: 'Revenue and Analytics', description: 'Charts for earnings, order volume and the platform commission over time.' },
+      { title: 'Alerts', description: 'Late, failed or stuck orders surfaced at the top instead of buried in a list.' },
     ],
     techStack: [
-      'Figma for screens and prototypes',
-      'Component library with variants',
-      'Design tokens for colour, type and spacing',
-      'Data table and filter patterns',
-      'Chart styles for the analytics pages',
-      'Developer handoff notes and specs',
-    ], // TODO: verify
-    codeUrl: '', // TODO: add repo URL if any
+      'React with Vite',
+      'Tailwind CSS for styling',
+      'React Query for server data',
+      'Zustand for UI state',
+      'Recharts for analytics charts',
+      'Node.js, PostgreSQL with PostGIS and Socket.io on the backend',
+    ],
+    codeUrl: '', // TODO: add repo URL (monorepo is on GitHub, add link only if you want it public)
     liveUrl: '',
     behanceUrl: '',
-    status: 'Coming Soon', // TODO: confirm
+    status: 'In Development', // TODO: confirm
   },
   {
     slug: 'absolute',
@@ -150,39 +150,39 @@ export const projects = [
     status: 'Coming Soon', // TODO: confirm
   },
   {
-    slug: 'carrywise',
-    title: 'CarryWise Dashboard',
-    subtitle: 'Shuttle App Admin Dashboard', // TODO: consider "Logistics Admin Dashboard" to match what CarryWise is now
-    thumbnail: img.carrywiseOverview,
-    heroImage: img.carrywiseOverview,
-    gallery: [img.carrywiseOverview, img.carrywiseOrders, img.carrywiseOrderDetail],
-    tags: ['Dashboard', 'Admin', 'Logistics', 'React', 'UI/UX', 'Figma'],
+    slug: 'roomly',
+    title: 'Roomly Dashboard',
+    subtitle: 'Hotel Admin Dashboard',
+    thumbnail: img.overviewMac,
+    heroImage: img.overviewMac,
+    gallery: [img.overviewMac, img.revenueMac, img.roomManagementMac, img.reviewMac],
+    tags: ['Figma', 'Dashboard', 'Freelance', 'UI/UX', 'Design System'],
     shortDescription:
-      'The admin side of CarryWise, a logistics aggregation platform for Port Harcourt. Live dispatch, fleet management, orders, revenue and carrier performance in one dark dashboard.',
+      'Full hotel management: revenue analytics, room tracking, staff scheduling, and guest management.',
     challenge:
-      "Moving goods around Port Harcourt runs on phone calls, WhatsApp groups and whoever the dispatcher happens to know. Orders, riders and payments live in different places, so problems get noticed late, usually when a customer calls to complain.\n\nCarryWise brings those carriers onto one platform, which means someone has to see all of it at once. The admin dashboard had to give a dispatcher the full picture and let them act on it in a few clicks, not a few minutes.",
+      "Running a hotel means a lot of small things happening at once. A room needs cleaning, a guest is asking for something, a booking just changed. In a lot of hotels that information is spread across a notebook, a spreadsheet and a WhatsApp group, so the front desk spends the day chasing it.\n\nThe brief was one dashboard that holds all of it. The risk with that kind of brief is a screen so full that managers stop reading it.", // TODO: verify
     solution:
-      "I designed it dark, with a deep navy and purple palette and one accent colour, so the data is the loudest thing on screen. Colour is kept for status and alerts, which means anything late or broken stands out straight away.\n\nThe dashboard is split into the jobs an admin actually does: Analytics, Orders, Revenue, a Dispatch Map, Fleet Management, Carrier Performance and Settings. Each page uses the same cards, tables and filters. I wrote the design system as a developer guide, so the build is done against specs instead of guesses.",
+      "I started with an overview that answers the questions a manager asks first thing in the morning: how full are we, how is revenue, what needs attention. From there each area, rooms, revenue, reviews, guests, gets its own page built from the same table, filter and status patterns, so once you learn one you know them all.\n\nStatus colours are used only for status, which keeps dense tables readable. I also delivered the components and tokens as a proper UI system, so new pages can be built by the dev team without coming back to me for every screen.", // TODO: verify
     keyFeatures: [
-      { title: 'Dispatch Map', description: 'See active deliveries and carriers on a live map and reassign without leaving the screen.' },
-      { title: 'Orders', description: 'One filterable table for every order, with status, carrier and quick actions.' },
-      { title: 'Fleet Management', description: 'Vehicles and riders with availability, so dispatchers know who can take the next job.' },
-      { title: 'Carrier Performance', description: 'Delivery times and completion rates per carrier, so the good ones get more work.' },
-      { title: 'Revenue and Analytics', description: 'Charts for earnings, order volume and the platform commission over time.' },
-      { title: 'Alerts', description: 'Late, failed or stuck orders surfaced at the top instead of buried in a list.' },
+      { title: 'Revenue Analytics', description: 'Charts and summaries of performance by day, month and room type.' }, // TODO: verify
+      { title: 'Room Management', description: 'Live room status, occupancy and housekeeping in one view.' }, // TODO: verify
+      { title: 'Guest Management', description: 'Guest profiles, stays and requests together so nothing gets lost between shifts.' }, // TODO: verify
+      { title: 'Staff Scheduling', description: 'Shift planning that shows coverage per department at a glance.' }, // TODO: verify
+      { title: 'Reviews', description: 'Guest feedback collected in one place for quick follow-up.' }, // TODO: verify
+      { title: 'Reusable UI System', description: 'Components and tokens handed over so developers can extend the dashboard on their own.' }, // TODO: verify
     ],
     techStack: [
-      'React with Vite',
-      'Tailwind CSS for styling',
-      'React Query for server data',
-      'Zustand for UI state',
-      'Recharts for analytics charts',
-      'Node.js, PostgreSQL with PostGIS and Socket.io on the backend',
-    ],
-    codeUrl: '', // TODO: add repo URL (monorepo is on GitHub, add link only if you want it public)
+      'Figma for screens and prototypes',
+      'Component library with variants',
+      'Design tokens for colour, type and spacing',
+      'Data table and filter patterns',
+      'Chart styles for the analytics pages',
+      'Developer handoff notes and specs',
+    ], // TODO: verify
+    codeUrl: '', // TODO: add repo URL if any
     liveUrl: '',
     behanceUrl: '',
-    status: 'In Development', // TODO: confirm
+    status: 'Coming Soon', // TODO: confirm
   },
   {
     slug: 'gscapes-marketplace',
