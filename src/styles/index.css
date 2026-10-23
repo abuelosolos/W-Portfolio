@@ -801,7 +801,7 @@ img {
 }
 
 .footer-top {
-  display: none; /* small brand + icons are mobile-only */
+  display: none; /* small brand is mobile-only */
 }
 
 .foot-brand-block {
@@ -816,11 +816,6 @@ img {
   font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
-}
-
-.foot-icons {
-  display: flex;
-  gap: 14px;
 }
 
 .footer-meta {
@@ -1418,7 +1413,7 @@ a.pill-live:focus-visible {
     min-height: 44px;
   }
 
-  /* footer: small brand + icons, copyright left, no giant wordmark */
+  /* footer: small brand, copyright left, no giant wordmark */
   .site-footer {
     gap: 20px;
     padding-top: 32px;
@@ -1432,17 +1427,6 @@ a.pill-live:focus-visible {
   .foot-brand-block {
     width: auto;
     gap: 4px;
-  }
-
-  .foot-icons {
-    gap: 0;
-    margin-left: -11px;
-    --icon-scale: 0.9;
-  }
-
-  .foot-icons .icon-link {
-    min-width: 40px;
-    min-height: 40px;
   }
 
   .footer-meta {

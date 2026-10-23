@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Icon } from './Icon';
-import { socials } from '../data/socials';
 
 const links = [
   { label: 'about', hash: '#about' },
@@ -12,16 +10,9 @@ const links = [
 export function Footer() {
   return (
     <footer className="site-footer" id="footer">
-      <div className="footer-top"> {/* small brand + icons: mobile only (CSS) */}
+      <div className="footer-top"> {/* small brand: mobile only (CSS) */}
         <div className="foot-brand-block">
           <div className="foot-brand">Kumasi.</div>
-          <div className="foot-icons">
-            {socials.map((s) => (
-              <a key={s.name} href={s.href} target="_blank" rel="noopener" aria-label={s.label} className="icon-link">
-                <Icon name={s.name} />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
       <div className="footer-bottom">
