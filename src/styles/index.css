@@ -1319,9 +1319,9 @@ a.pill-live:focus-visible {
     display: none;
   }
 
-  /* extra air between the tools row and the last paragraph: total = clamp(64px, 18vw, 88px) */
+  /* extra air between the tools row and the last paragraph: total = clamp(84px, 23.5vw, 114px) */
   .about-copy-right {
-    margin-top: max(0px, calc(clamp(64px, 18vw, 88px) - var(--about-gap)));
+    margin-top: max(0px, calc(clamp(84px, 23.5vw, 114px) - var(--about-gap)));
   }
 
   .tools-row {
