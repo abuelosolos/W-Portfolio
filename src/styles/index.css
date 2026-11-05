@@ -575,22 +575,23 @@ img {
   width: 41px;
   height: 41px;
   margin: 0;
-  /* growing margin pushes the neighbours apart */
-  transition: margin 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
 }
 
 .tool img {
   max-width: none;
   transform: scale(var(--tool-scale, 1));
-  transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
-}
-
-.tool:hover {
-  margin: 0 var(--tool-push, 11px);
+  /* smooth ease-out, no overshoot, so sweeping across the row feels fluid */
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .tool:hover img {
   transform: scale(calc(var(--tool-scale, 1) * 1.3));
+}
+
+/* while one icon is highlighted, the others shrink */
+.tools-row:has(.tool:hover) .tool:not(:hover) img {
+  transform: scale(calc(var(--tool-scale, 1) * 0.7));
 }
 
 /* ==========================================================================
@@ -1152,6 +1153,11 @@ a.pill-live:focus-visible {
   50% { transform: translateY(4px); opacity: 1; }
 }
 
+@keyframes deck-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes marquee {
   to { transform: translateX(-50%); }
 }
@@ -1219,10 +1225,62 @@ a.pill-live:focus-visible {
     font-size: 14px;
   }
 
-  /* hero (carousel is not rendered on mobile; floating icons sit below the text) */
+  /* hero (floating icons sit below the text, then the one-at-a-time fling carousel) */
   .hero {
     position: relative;
     padding-bottom: 32px;
+    overflow-x: clip; /* flung cards must never cause horizontal scroll */
+  }
+
+  .hero-fling {
+    position: relative;
+    width: calc((100% - var(--gutter) * 2) * 0.82);
+    margin: 12px auto 44px;
+    aspect-ratio: 452 / 239;
+  }
+
+  .fling-card {
+    position: absolute;
+    inset: 0;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    z-index: calc(10 - var(--d));
+    transform-origin: 30% 100%;
+    /* the pile leans left; each card behind sits a little lower-left, smaller and darker */
+    transform:
+      translate(calc(var(--d) * -6px), calc(var(--d) * 7px))
+      rotate(calc(-2deg + var(--d) * -2.5deg))
+      scale(calc(1 - var(--d) * 0.04));
+    filter: brightness(calc(1 - var(--d) * 0.12));
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
+    animation: deck-in 0.6s ease-out both;
+    will-change: transform;
+  }
+
+  .fling-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* the top card is thrown off to the left */
+  .fling-card.is-gone {
+    transform: translate(-130vw, -14px) rotate(-24deg);
+    filter: none;
+    transition: transform 0.7s cubic-bezier(0.5, 0, 0.9, 0.6);
+    pointer-events: none;
+  }
+
+  .fling-card.is-still,
+  .fling-card.is-still.is-gone {
+    transition: none;
+    animation: none;
+  }
+
+  .fling-card.is-still.is-gone {
+    display: none;
   }
 
   .hero-top {
@@ -1322,7 +1380,6 @@ a.pill-live:focus-visible {
   .tools-row {
     gap: 14px;
     --tool-scale: 0.78;
-    --tool-push: 6px;
   }
 
   .tool {
@@ -1376,25 +1433,14 @@ a.pill-live:focus-visible {
     font-size: 14px;
   }
 
-  /* art gallery */
+  /* art gallery: same mosaic as desktop, just scaled down (the grid keeps its aspect ratio) */
   .album-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: none;
-    aspect-ratio: auto;
-    gap: 12px;
+    gap: 8px 7px;
     margin-top: 32px;
   }
 
-  .album-item:nth-child(1),
-  .album-item:nth-child(2) {
-    grid-row: auto;
-    aspect-ratio: 3 / 4;
-  }
-
-  .album-item:nth-child(3),
-  .album-item:nth-child(4) {
-    grid-column: 1 / -1;
-    aspect-ratio: 16 / 9;
+  .album-item {
+    border-radius: 8px;
   }
 
   .album-cta {
@@ -1549,17 +1595,6 @@ a.pill-live:focus-visible {
   }
 }
 
-@media (max-width: 480px) {
-  .album-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .album-item:nth-child(n) {
-    grid-column: auto;
-    aspect-ratio: 4 / 3;
-  }
-}
-
 /* ==========================================================================
    Reduced motion: no scroll-reveal, typing, floating, marquee or hover movement
    ========================================================================== */
@@ -1580,7 +1615,8 @@ a.pill-live:focus-visible {
   .floater > span,
   .caret.blink,
   .hero-scroll,
-  .hero-track {
+  .hero-track,
+  .fling-card {
     animation: none;
   }
 
@@ -1616,11 +1652,8 @@ a.pill-live:focus-visible {
     transform: none;
   }
 
-  .tool:hover {
-    margin: 0;
-  }
-
-  .tool:hover img {
+  .tool:hover img,
+  .tools-row:has(.tool:hover) .tool:not(:hover) img {
     transform: scale(var(--tool-scale, 1));
   }
 }

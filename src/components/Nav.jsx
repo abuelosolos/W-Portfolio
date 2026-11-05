@@ -17,7 +17,7 @@ export function Nav() {
       <header className="site-nav" id="nav">
         <div className="nav-inner">
           <div className="nav-left">
-            <Link to="/" className="nav-logo" onClick={close}>Kumasi.</Link>
+            <Link to="/" className="nav-logo" onClick={close} >Kumasi.</Link>
 
             <nav className="nav-links" aria-label="Primary navigation">
               {links.map((l) => (
