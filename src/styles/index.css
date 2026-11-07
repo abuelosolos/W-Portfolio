@@ -749,6 +749,7 @@ img {
   border-radius: 12px;
   overflow: hidden;
   background: var(--surface);
+  cursor: pointer;
 }
 
 .album-item:nth-child(1),
@@ -771,6 +772,49 @@ img {
   display: flex;
   justify-content: center;
   margin-top: 74px;
+}
+
+.art-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px var(--gutter) 24px;
+  background: rgba(17, 17, 17, 0.9);
+  backdrop-filter: blur(6px);
+  animation: deck-in 0.2s ease-out;
+}
+
+.art-lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: var(--gutter);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.art-lightbox-close:hover,
+.art-lightbox-close:focus-visible {
+  color: var(--surface-alt);
+}
+
+.art-lightbox-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(92vw, 1200px);
+  max-height: calc(100svh - 80px);
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
 }
 
 /* ==========================================================================
@@ -1225,62 +1269,26 @@ a.pill-live:focus-visible {
     font-size: 14px;
   }
 
-  /* hero (floating icons sit below the text, then the one-at-a-time fling carousel) */
+  /* hero (floating icons sit below the text, then the auto-scrolling marquee carousel) */
   .hero {
     position: relative;
     padding-bottom: 32px;
-    overflow-x: clip; /* flung cards must never cause horizontal scroll */
   }
 
-  .hero-fling {
-    position: relative;
-    width: calc((100% - var(--gutter) * 2) * 0.82);
-    margin: 12px auto 44px;
+  .hero-carousel {
+    margin: -4px 0 28px;
+  }
+
+  .hero-track-group {
+    gap: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-card {
+    width: clamp(260px, 76vw, 360px);
+    height: auto;
     aspect-ratio: 452 / 239;
-  }
-
-  .fling-card {
-    position: absolute;
-    inset: 0;
-    display: block;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--surface);
-    z-index: calc(10 - var(--d));
-    transform-origin: 30% 100%;
-    /* the pile leans left; each card behind sits a little lower-left, smaller and darker */
-    transform:
-      translate(calc(var(--d) * -6px), calc(var(--d) * 7px))
-      rotate(calc(-2deg + var(--d) * -2.5deg))
-      scale(calc(1 - var(--d) * 0.04));
-    filter: brightness(calc(1 - var(--d) * 0.12));
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
-    animation: deck-in 0.6s ease-out both;
-    will-change: transform;
-  }
-
-  .fling-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* the top card is thrown off to the left */
-  .fling-card.is-gone {
-    transform: translate(-130vw, -14px) rotate(-24deg);
-    filter: none;
-    transition: transform 0.7s cubic-bezier(0.5, 0, 0.9, 0.6);
-    pointer-events: none;
-  }
-
-  .fling-card.is-still,
-  .fling-card.is-still.is-gone {
-    transition: none;
-    animation: none;
-  }
-
-  .fling-card.is-still.is-gone {
-    display: none;
+    border-radius: 10px;
   }
 
   .hero-top {
@@ -1616,7 +1624,8 @@ a.pill-live:focus-visible {
   .caret.blink,
   .hero-scroll,
   .hero-track,
-  .fling-card {
+  .fling-card,
+  .art-lightbox {
     animation: none;
   }
 

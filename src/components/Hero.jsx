@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Img } from './Img';
-import { HeroFling } from './HeroFling';
 import { floaterIcons } from '../assets/icons';
 import { getProject } from '../data/projects';
 import { email } from '../data/socials';
@@ -75,36 +74,32 @@ export function Hero() {
         </div>
       </div>
 
-      {!isMobile && (
-        <div className={`hero-carousel ${done ? 'visible' : ''}`} aria-label="Selected projects">
-          <div className={`hero-track ${paused ? 'paused' : ''} ${hovered ? 'has-hover' : ''}`} style={{ animationDuration: `${slides.length * SECONDS_PER_CARD}s` }}>
-            {[0, 1].map((group) => (
-              <div className="hero-track-group" key={group} aria-hidden={group === 1}>
-                {slides.map((p, n) => {
-                  const key = `${group}-${n}`;
-                  return (
-                    <Link
-                      key={key}
-                      to={`/project/${p.slug}`}
-                      className={`hero-card ${hovered === key ? 'is-hovered' : ''}`}
-                      aria-label={p.title}
-                      tabIndex={group === 1 ? -1 : 0}
-                      onMouseEnter={() => enter(key)}
-                      onMouseLeave={leave}
-                      onFocus={() => enter(key)}
-                      onBlur={leave}
-                    >
-                      <Img src={p.image} alt={group === 0 ? p.title : ''} loading="lazy" />
-                    </Link>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
+      <div className={`hero-carousel ${done ? 'visible' : ''}`} aria-label="Selected projects">
+        <div className={`hero-track ${paused ? 'paused' : ''} ${hovered ? 'has-hover' : ''}`} style={{ animationDuration: `${slides.length * SECONDS_PER_CARD}s` }}>
+          {[0, 1].map((group) => (
+            <div className="hero-track-group" key={group} aria-hidden={group === 1}>
+              {slides.map((p, n) => {
+                const key = `${group}-${n}`;
+                return (
+                  <Link
+                    key={key}
+                    to={`/project/${p.slug}`}
+                    className={`hero-card ${hovered === key ? 'is-hovered' : ''}`}
+                    aria-label={p.title}
+                    tabIndex={group === 1 ? -1 : 0}
+                    onMouseEnter={() => enter(key)}
+                    onMouseLeave={leave}
+                    onFocus={() => enter(key)}
+                    onBlur={leave}
+                  >
+                    <Img src={p.image} alt={group === 0 ? p.title : ''} loading="lazy" />
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
         </div>
-      )}
-
-      {isMobile && <HeroFling slides={slides} reduced={reduced} />}
+      </div>
 
       {isMobile && <p className="hero-scroll">you might wanna scroll</p>}
     </section>

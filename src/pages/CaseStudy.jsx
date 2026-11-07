@@ -1,16 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Icon } from '../components/Icon';
 import { Img } from '../components/Img';
 import { Connect } from '../components/Connect';
 import { getProject } from '../data/projects';
 import { useReveal } from '../hooks/useReveal';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+
+const AUTO_SWIPE_MS = 5000;
 
 function Carousel({ images, title }) {
   const [index, setIndex] = useState(0);
+  const reduced = usePrefersReducedMotion();
+  const touchX = useRef(0);
   const total = images.length;
   const go = (i) => setIndex(((i % total) + total) % total);
-  let touchX = 0;
+
+  useEffect(() => {
+    if (total <= 1 || reduced) return undefined;
+    const timer = setTimeout(() => {
+      setIndex((i) => (i + 1) % total);
+    }, AUTO_SWIPE_MS);
+    return () => clearTimeout(timer);
+  }, [index, total, reduced]);
 
   return (
     <div
@@ -20,9 +32,9 @@ function Carousel({ images, title }) {
         if (e.key === 'ArrowLeft') go(index - 1);
         if (e.key === 'ArrowRight') go(index + 1);
       }}
-      onTouchStart={(e) => { touchX = e.touches[0].clientX; }}
+      onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
       onTouchEnd={(e) => {
-        const diff = touchX - e.changedTouches[0].clientX;
+        const diff = touchX.current - e.changedTouches[0].clientX;
         if (total > 1 && Math.abs(diff) > 40) go(index + (diff > 0 ? 1 : -1));
       }}
     >
@@ -100,7 +112,7 @@ export default function CaseStudy() {
           </div>
         </div>
 
-        <Carousel images={images} title={project.title} />
+        <Carousel key={project.slug} images={images} title={project.title} />
 
         <ul className="case-tags" aria-label="Technologies">
           {project.tags.map((t) => <li className="pill" key={t}>{t}</li>)}
