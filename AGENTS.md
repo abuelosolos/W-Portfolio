@@ -46,5 +46,6 @@ Figma: https://www.figma.com/design/H60wCfY8hFlaRKhQZgEKUJ/Portfolio (fileKey `H
 - [Hero, mobile] Content stays vertically centered as before; "you might wanna scroll" is absolutely positioned 24px above the bottom of the hero (hero-top has padding-bottom 18px so the content did not shift); replaced mobile `HeroFling` deck with the same auto-scrolling `.hero-carousel` marquee used on desktop (cards scaled to `clamp(260px, 76vw, 360px)` with `16px` gap on `<=768px`).
 - [CaseStudy, carousel] Auto-advances to the next image every 5s (`AUTO_SWIPE_MS = 5000`); clicking prev/next, keyboard arrows, or touch swipe resets the 5s timer; disabled under `prefers-reduced-motion`.
 - [Art, lightbox] Clicking any `/collection.` gallery image opens a full-size (`object-fit: contain`) lightbox modal with a close (`×`) button above to the right (also closes on backdrop click or `Escape`).
+- [SEO/OG] Added `public/og-thumbnail.png` (1280×720) and Open Graph / Twitter `summary_large_image` meta tags in `index.html` for `https://heiskumasi.xyz/`.
 - Unused now: src/hooks/useSlider.js (old slider), src/components/HeroFling.jsx, src/hooks/useMobileNav.js still used.
 - Fake content marked `// TODO: replace` in src/data/projects.js and src/data/socials.js (grep TODO).
